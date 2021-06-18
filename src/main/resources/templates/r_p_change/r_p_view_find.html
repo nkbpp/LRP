@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>LRP</title>
+    <style>
+        .red{
+            background-color: lightcoral;
+        }
+        .green{
+             background-color: lightgreen;
+        }
+        .fio{
+            width: 120px;
+        }
+        .dat{
+            width: 80px;
+        }
+        .snils{
+            width: 105px;
+        }
+    </style>
+    <script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("table").on('click', 'input', function () {
+                if ($(this).attr('type') == "button") {
+
+                    if($(this).attr('name') == "find"){
+                        var param =
+                            "&fam_rod=" + $("#"+$(this ).attr('name')+" [name='fam_rod']").val() +
+                            "&name_rod=" + $("#"+$(this ).attr('name')+" [name='name_rod']").val() +
+                            "&otch_rod=" + $("#"+$(this ).attr('name')+" [name='otch_rod']").val() +
+                            "&data_rod=" + $("#"+$(this ).attr('name')+" [name='data_rod']").val() +
+                            "&snils_rod=" + $("#"+$(this ).attr('name')+" [name='snils_rod']").val() +
+                            "&adres=" + $("#"+$(this ).attr('name')+" [name='adres']").val() +
+                            "&pasport=" + $("#"+$(this ).attr('name')+" [name='pasport']").val() +
+
+                            "&namedoc=" + $("#"+$(this ).attr('name')+" [name='namedoc']").val() +
+                            "&data_resh=" + $("#"+$(this ).attr('name')+" [name='data_resh']").val() +
+                            "&data_vst=" + $("#"+$(this ).attr('name')+" [name='data_vst']").val() +
+                            "&result=" + $("#"+$(this ).attr('name')+" [name='result']").val() +
+
+                            "&fam_child=" + $("#"+$(this ).attr('name')+" [name='fam_child']").val() +
+                            "&name_child=" + $("#"+$(this ).attr('name')+" [name='name_child']").val() +
+                            "&otch_child=" + $("#"+$(this ).attr('name')+" [name='otch_child']").val() +
+                            "&data_roj=" + $("#"+$(this ).attr('name')+" [name='data_roj']").val() +
+                            "&snils_child=" + $("#"+$(this ).attr('name')+" [name='snils_child']").val() +
+                            "&doc_osn=" + $("#"+$(this ).attr('name')+" [name='doc_osn']").val() +
+                            "&data_resh_vos=" + $("#"+$(this ).attr('name')+" [name='data_resh_vos']").val() +
+                            "&data_vst_vos=" + $("#"+$(this ).attr('name')+" [name='data_vst_vos']").val();
+
+                        $("table[name='file']").load("/lrp/findview", param, function () {
+                        });
+
+                        //для изменения
+                    } else {
+
+                        var param = "?id=" + $(this ).attr('name') +
+                            "&idfiles=-1" +
+                            "&fam_rod=" + $("#"+$(this ).attr('name')+" [name='fam_rod']").val() +
+                            "&name_rod=" + $("#"+$(this ).attr('name')+" [name='name_rod']").val() +
+                            "&otch_rod=" + $("#"+$(this ).attr('name')+" [name='otch_rod']").val() +
+                            "&data_rod=" + $("#"+$(this ).attr('name')+" [name='data_rod']").val() +
+                            "&snils_rod=" + $("#"+$(this ).attr('name')+" [name='snils_rod']").val() +
+                            "&adres=" + $("#"+$(this ).attr('name')+" [name='adres']").val() +
+                            "&pasport=" + $("#"+$(this ).attr('name')+" [name='pasport']").val() +
+
+                            "&namedoc=" + $("#"+$(this ).attr('name')+" [name='namedoc']").val() +
+                            "&data_resh=" + $("#"+$(this ).attr('name')+" [name='data_resh']").val() +
+                            "&data_vst=" + $("#"+$(this ).attr('name')+" [name='data_vst']").val() +
+                            "&result=" + $("#"+$(this ).attr('name')+" [name='result']").val() +
+
+                            "&fam_child=" + $("#"+$(this ).attr('name')+" [name='fam_child']").val() +
+                            "&name_child=" + $("#"+$(this ).attr('name')+" [name='name_child']").val() +
+                            "&otch_child=" + $("#"+$(this ).attr('name')+" [name='otch_child']").val() +
+                            "&data_roj=" + $("#"+$(this ).attr('name')+" [name='data_roj']").val() +
+                            "&snils_child=" + $("#"+$(this ).attr('name')+" [name='snils_child']").val() +
+                            "&doc_osn=" + $("#"+$(this ).attr('name')+" [name='doc_osn']").val() +
+                            "&data_resh_vos=" + $("#"+$(this ).attr('name')+" [name='data_resh_vos']").val() +
+                            "&data_vst_vos=" + $("#"+$(this ).attr('name')+" [name='data_vst_vos']").val();
+
+
+                        $.get("/lrp/r_p_change/setview"+param, function(data) {
+                            //$('.result').html(data);
+                            alert("Данные изменены!");
+                        });
+/*                        $("table[name='file666']").load("/lrp/r_p_change/setview",param, function () {
+                            alert("Данные изменены!");
+                        });*/
+
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td><input type="text" class="fio" value="Фамилия" disabled ></td>
+        <td><input type="text" class="fio" value="Имя" disabled ></td>
+        <td><input type="text" class="fio" value="Отчество" disabled ></td>
+        <td><input type="text" class="dat" value="Дата рож." disabled ></td>
+        <td><input type="text" class="snils" value="СНИЛС" disabled ></td>
+        <td><input type="text" value="Адрес" disabled ></td>
+        <td><input type="text" value="Паспорт" disabled ></td>
+
+
+        <td><input type="text" value="Судебный орган" disabled ></td>
+        <td><input type="text" class="dat" value="Дата решения" disabled ></td>
+        <td><input type="text" class="dat" value="Дата вступления" disabled ></td>
+        <td><input type="text" value="Результат" disabled ></td>
+
+        <td><input type="text" class="fio" value="Фимилия" disabled ></td>
+        <td><input type="text" class="fio" value="Имя" disabled ></td>
+        <td><input type="text" class="fio" value="Отчество" disabled ></td>
+        <td><input type="text" class="dat" value="Дата рож." disabled ></td>
+        <td><input type="text" class="snils" value="СНИЛС" disabled ></td>
+        <td><input type="text" value="Документ основание" disabled ></td>
+        <td><input type="text" class="dat" value="Дата решения" disabled ></td>
+        <td><input type="text" class="dat" value="Дата вступления" disabled ></td>
+
+        <td><input type="text" value="Найти" disabled ></td>
+    </tr>
+
+    <tr id="find">
+        <td><input class="fio" name="fam_rod" type="text"></td>
+        <td><input class="fio" name="name_rod" type="text"></td>
+        <td><input class="fio" name="otch_rod" type="text"></td>
+        <td><input class="dat" name="data_rod" type="text"></td>
+        <td><input class="snils" name="snils_rod" type="text"></td>
+        <td><input name="adres" type="text"></td>
+        <td><input name="pasport" type="text"></td>
+
+        <td><input name="namedoc" type="text"></td>
+        <td><input class="dat" name="data_resh" type="text"></td>
+        <td><input class="dat" name="data_vst" type="text"></td>
+        <td><input name="result" type="text"></td>
+
+        <td><input class="fio" name="fam_child" type="text"></td>
+        <td><input class="fio" name="name_child" type="text"></td>
+        <td><input class="fio" name="otch_child" type="text"></td>
+        <td><input class="dat" name="data_roj" type="text"></td>
+        <td><input class="snils" name="snils_child" type="text"></td>
+        <td><input name="doc_osn" type="text"></td>
+        <td><input class="dat" name="data_resh_vos" type="text"></td>
+        <td><input class="dat" name="data_vst_vos" type="text"></td>
+
+        <td><input type="button" value="Поиск" name="find"></td>
+    </tr>
+</table>
+<br>
+<div>Результаты поиска:</div>
+<table  th:replace="r_p_change/frag/r_p_all :: r_p_all2(${rpalls})"></table>
+
+
+
+</body>
+</html>

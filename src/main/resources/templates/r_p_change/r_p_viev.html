@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>LRP</title>
+    <style>
+        .red{
+            background-color: lightcoral;
+        }
+        .green{
+             background-color: lightgreen;
+        }
+        .fio{
+            width: 120px;
+        }
+        .dat{
+            width: 80px;
+        }
+        .snils{
+            width: 105px;
+        }
+    </style>
+    <script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("table").on('click', 'input', function () {
+                if ($(this).attr('type') == "button") {
+
+                    var param = "id=" + $(this ).attr('name') +
+                        "&list=" + (+$("#next").attr('name')-1) +
+                        "&idfiles=" + $("table[name='file']").attr('id') +
+                        "&fam_rod=" + $("#"+$(this ).attr('name')+" [name='fam_rod']").val() +
+                        "&name_rod=" + $("#"+$(this ).attr('name')+" [name='name_rod']").val() +
+                        "&otch_rod=" + $("#"+$(this ).attr('name')+" [name='otch_rod']").val() +
+                        "&data_rod=" + $("#"+$(this ).attr('name')+" [name='data_rod']").val() +
+                        "&snils_rod=" + $("#"+$(this ).attr('name')+" [name='snils_rod']").val() +
+                        "&adres=" + $("#"+$(this ).attr('name')+" [name='adres']").val() +
+                        "&pasport=" + $("#"+$(this ).attr('name')+" [name='pasport']").val() +
+
+                        "&namedoc=" + $("#"+$(this ).attr('name')+" [name='namedoc']").val() +
+                        "&data_resh=" + $("#"+$(this ).attr('name')+" [name='data_resh']").val() +
+                        "&data_vst=" + $("#"+$(this ).attr('name')+" [name='data_vst']").val() +
+                        "&result=" + $("#"+$(this ).attr('name')+" [name='result']").val() +
+
+                        "&fam_child=" + $("#"+$(this ).attr('name')+" [name='fam_child']").val() +
+                        "&name_child=" + $("#"+$(this ).attr('name')+" [name='name_child']").val() +
+                        "&otch_child=" + $("#"+$(this ).attr('name')+" [name='otch_child']").val() +
+                        "&data_roj=" + $("#"+$(this ).attr('name')+" [name='data_roj']").val() +
+                        "&snils_child=" + $("#"+$(this ).attr('name')+" [name='snils_child']").val() +
+                        "&doc_osn=" + $("#"+$(this ).attr('name')+" [name='doc_osn']").val() +
+                        "&data_resh_vos=" + $("#"+$(this ).attr('name')+" [name='data_resh_vos']").val() +
+                        "&data_vst_vos=" + $("#"+$(this ).attr('name')+" [name='data_vst_vos']").val();
+                    $("table[name='file']").load("/lrp/r_p_change/setview",param, function () {
+                        param = "id=" + $("table[name='file']").attr('id') +
+                            "&list=" + (+$("#next").attr('name')-1);
+                        $("table[name='file']").load("/lrp/r_p_change/view",param);
+                        alert("Данные изменены!");
+                    });
+                    //КОСТЫЛЬ
+
+                    return false;
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<table  th:replace="r_p_change/frag/r_p_all :: r_p_all2(${rpalls})"></table>
+
+<div>
+    <a th:href="@{/lrp/r_p_change/change(id=${idfiles},list=${listback})}">Назад</a>
+    <a id="next" th:name="${list}" th:href="@{/lrp/r_p_change/change(id=${idfiles},list=${list})}">Далее</a>
+</div>
+
+</body>
+</html>

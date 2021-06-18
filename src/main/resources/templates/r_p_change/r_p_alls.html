@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>LRP</title>
+    <style>
+        .red{
+            background-color: lightcoral;
+        }
+        .green{
+             background-color: lightgreen;
+        }
+        .fio{
+            width: 120px;
+        }
+        .dat{
+            width: 80px;
+        }
+        .snils{
+            width: 105px;
+        }
+    </style>
+    <script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+
+<!--<div style="width: 3400px;">-->
+<table>
+    <tr>
+        <td><input type="text" class="fio" value="Фимилия" disabled ></td>
+        <td><input type="text" class="fio" value="Имя" disabled ></td>
+        <td><input type="text" class="fio" value="Отчество" disabled ></td>
+        <td><input type="text" class="dat" value="Дата рож." disabled ></td>
+        <td><input type="text" class="snils" value="СНИЛС" disabled ></td>
+        <td><input type="text" value="Адрес" disabled ></td>
+        <td><input type="text" value="Паспорт" disabled ></td>
+        <td><input type="text" value="Изменить" disabled ></td>
+    </tr>
+
+    <tr th:replace="r_p_change/frag/r_p_all :: r_p_all(${rpalls})">
+    </tr>
+
+<!--    <tr th:each="r : ${rpalls.getR_p_rd()}" th:replace="r_p_change/frag/r_p_all :: r_p_all(${r})">
+    </tr>-->
+
+
+
+<!--    <input type="text" value="Судебный орган" disabled >
+    <input type="text" class="dat" value="Дата решения" disabled >
+    <input type="text" class="dat" value="Дата вступления" disabled >
+    <input type="text" value="Результат" disabled >
+
+    <input type="text" class="fio" value="Фимилия" disabled >
+    <input type="text" class="fio" value="Имя" disabled >
+    <input type="text" class="fio" value="Отчество" disabled >
+    <input type="text" class="dat" value="Дата рож." disabled >
+    <input type="text" class="snils" value="СНИЛС" disabled >
+    <input type="text" value="Док-осн" disabled >
+    <input type="text" class="dat" value="Дата решения" disabled >
+    <input type="text" class="dat" value="Дата вступления" disabled >
+</div>-->
+
+<!--<div style="display: inline" th:each="r : ${rpalls.getR_p_rd()}">
+    <div th:insert="r_p_change/frag/r_p_all :: r_p_all(${r})"></div>
+</div>-->
+
+
+
+</table>
+
+</body>
+</html>

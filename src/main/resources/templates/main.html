@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>LRP</title>
+    <script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#rp_protocol').click(function( event ){
+                $('#zag').text("Идет загрузка!");
+                event.stopPropagation(); // Остановка происходящего
+                event.preventDefault();  // Полная остановка происходящего
+
+                $.get('/lrp/protocol_r_p', function(data) {
+                    $('#zag').text("");
+                    alert(data);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div>ЗАГРУЗКА</div>
+<div><a href="\lrp\download_r_p">Загрузить родительские права</a> <a href="\lrp\r_p_change\files">Редактировать</a></div>
+<div><a href="\lrp\download_z_p">Загрузить законные представители</a></div>
+<div><a href="\lrp\download_n_d">Загрузить недееспособные</a></div>
+
+<br>
+
+<div>ВЫГРУЗКА ДЛЯ МОСКВЫ</div>
+<div><a href="\lrp\save_r_p" download>Выгрузить родительские права</a></div>
+<div><a href="\lrp\save_z_p" download>Выгрузить законные представители</a></div>
+<div><a href="\lrp\save_n_d" download>Выгрузить недееспособные</a></div>
+
+<br>
+
+<div>ВЫГРУЗКА ДЛЯ СВЕРКИ С БАЗОЙ РОСТОВСКИХ ЗАПРОСОВ</div>
+<div><a href="\lrp\rostzap_rod_r_p" download>Выгрузить родителей родительские права</a>
+    <a href="\lrp\rostzap_child_r_p" download>Выгрузить детей родительские права</a></div>
+<div><a href="\lrp\rostzap_rod_z_p" download>Выгрузить законные представители</a>
+    <a href="\lrp\rostzap_child_z_p" download>Выгрузить законные представители</a></div>
+<div><a href="\lrp\rostzap_rod_n_d" download>Выгрузить недееспособные</a>
+    <a href="\lrp\rostzap_child_n_d" download>Выгрузить недееспособные</a></div>
+
+<br>
+
+<div>ПОДГРУЗИТЬ СНИЛС</div>
+<div><a href="\lrp\set_snils_r_p">Родительские права</a></div>
+<div><a href="\lrp\set_snils_z_p">Законные представители</a></div>
+<div><a href="\lrp\set_snils_n_d">Недееспособные</a></div>
+
+<br>
+
+<div>ПРОТОКОЛЫ</div>
+<div><a href="#" id="rp_protocol">Родительские права</a>
+    <div id="zag"></div></div>
+
+<br>
+
+<div>ПОИСК</div>
+<div><a href="\lrp\r_p_view_find">Поиск по родительским правам</a></div>
+
+
+</body>
+</html>

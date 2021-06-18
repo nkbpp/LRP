@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>LRP</title>
+    <style>
+        .red{
+            background-color: lightcoral;
+        }
+        .green{
+            background-color: lightgreen;
+        }
+    </style>
+    <script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+
+
+<div th:each="f : ${files}">
+    <a th:text="${f.name_f}"
+       th:href="@{/lrp/r_p_change/change(id=${f.id_file})}"></a>
+       <!--th:class="${f.check()}? 'green' : 'red'"-->
+</div>
+
+<a th:href="@{/lrp/r_p_change/change(id=-1)}">
+    Всё
+</a>
+
+</body>
+</html>

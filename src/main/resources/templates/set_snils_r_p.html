@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>LRP</title>
+    <script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // обработка и отправка AJAX запроса при клике на кнопку upload_filesZ
+            var errtext = "";
+            var files;
+            var files2;
+            $('#filedocz').change(function(){
+                files = this.files;
+            });
+            $('#filedocz2').change(function(){
+                files2 = this.files;
+            });
+
+            $('body').on('click', 'a', function () {
+                if ($(this).attr('id') == "test") {
+                    var type = 'data:application/octet-stream;base64, ';
+                    var base = btoa(unescape(encodeURIComponent(errtext)));
+                    var res = type + base;
+                    document.getElementById('test').href = res;
+                }
+            });
+
+
+            $('#button').click(function( event ){
+                event.stopPropagation(); // Остановка происходящего
+                event.preventDefault();  // Полная остановка происходящего
+                // Создадим данные формы и добавим в них данные файлов из files
+                if(files==undefined){alert("Файл не выбран!");return 0;}
+
+                var data = new FormData();
+                $.each( files, function( key, value ){
+                    data.append( key, value );
+                });
+
+                // Отправляем запрос
+                var form = $("#addDocumentzForm");
+                $.ajax({
+                    url: form.attr("action"),
+                    type: 'POST',
+                    data: data,
+                    cache: false,
+                    //dataType: 'json',
+                    dataType: 'text',
+                    processData: false, // Не обрабатываем файлы (Don't process the files)
+                    contentType: false, // Так jQuery скажет серверу что это строковой запрос
+                    success: function( respond, textStatus, jqXHR ){
+                        console.log(respond);
+                        $('#filedocz').val("");
+                        alert("Операция завершена! ");
+                    },
+                    error: function( jqXHR, textStatus, errorThrown ){
+                        console.log('ОШИБКИ AJAX запроса: ' + textStatus );
+                    }
+                });
+
+            });
+
+            $('#button2').click(function( event ){
+                event.stopPropagation(); // Остановка происходящего
+                event.preventDefault();  // Полная остановка происходящего
+                // Создадим данные формы и добавим в них данные файлов из files
+                if(files2==undefined){alert("Файл не выбран!");return 0;}
+
+                var data = new FormData();
+                $.each( files2, function( key, value ){
+                    data.append( key, value );
+                });
+
+                // Отправляем запрос
+                var form = $("#addDocumentzForm2");
+                $.ajax({
+                    url: form.attr("action"),
+                    type: 'POST',
+                    data: data,
+                    cache: false,
+                    //dataType: 'json',
+                    dataType: 'text',
+                    processData: false, // Не обрабатываем файлы (Don't process the files)
+                    contentType: false, // Так jQuery скажет серверу что это строковой запрос
+                    success: function( respond, textStatus, jqXHR ){
+                        console.log(respond);
+                        $('#filedocz2').val("");
+                        alert("Операция завершена! ");
+                    },
+                    error: function( jqXHR, textStatus, errorThrown ){
+                        console.log('ОШИБКИ AJAX запроса: ' + textStatus );
+                    }
+                });
+
+            });
+
+        });
+    </script>
+</head>
+<body>
+<div>Загрузить родителей</div>
+<br>
+<form method="POST"
+      th:action="@{/lrp//download_r_p/set_parent_snils}"
+      enctype="multipart/form-data"
+      id="addDocumentzForm" class="row">
+    <input name="filez"
+           id="filedocz"
+           type="file"
+           accept=".xls">
+    <div><a href="#" id='button'>Добавить СНИЛС родителям</a></div>
+</form>
+<br>
+<br>
+<div>Загрузить детей</div>
+<br>
+<form method="POST"
+      th:action="@{/lrp//download_r_p/set_child_snils}"
+      enctype="multipart/form-data"
+      id="addDocumentzForm2" class="row">
+    <input name="filez"
+           id="filedocz2"
+           type="file"
+           accept=".xls">
+    <div><a href="#" id='button2'>Добавить СНИЛС детям</a></div>
+</form>
+<br>
+<br>
+<div><a a href="/lrp">Назад</a></div>
+</body>
+</html>

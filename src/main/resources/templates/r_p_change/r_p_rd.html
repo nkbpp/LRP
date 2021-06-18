@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>LRP</title>
+    <style>
+        .red{
+            background-color: lightcoral;
+        }
+        .green{
+             background-color: lightgreen;
+        }
+        .fio{
+            width: 120px;
+        }
+        .dat{
+            width: 80px;
+        }
+        .snils{
+            width: 105px;
+        }
+    </style>
+    <script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+
+<!--<div style="width: 3400px;">-->
+<table>
+
+    <tr>
+
+        <td><input type="text" value="Судебный орган" disabled ></td>
+        <td><input type="text" class="dat" value="Дата решения" disabled ></td>
+        <td><input type="text" class="dat" value="Дата вступления" disabled ></td>
+        <td><input type="text" value="Результат" disabled ></td>
+        <td><input type="text" value="Изменить" disabled ></td>
+        <td><input type="text" value="Документы" disabled ></td>
+
+    </tr>
+
+    <tr th:replace="r_p_change/frag/r_p_all :: r_p_rd(${rpalls})">
+    </tr>
+
+</table>
+
+</body>
+</html>

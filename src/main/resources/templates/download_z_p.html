@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+        <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+    <title>LRP</title>
+    <script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // обработка и отправка AJAX запроса при клике на кнопку upload_filesZ
+            var files;
+            $('input[type=file]').change(function(){
+                files = this.files;
+            });
+            $('#button').click(function( event ){
+                event.stopPropagation(); // Остановка происходящего
+                event.preventDefault();  // Полная остановка происходящего
+                // Создадим данные формы и добавим в них данные файлов из files
+                if(files==undefined){alert("Файл не выбран!");return 0;}
+
+                var data = new FormData();
+                $.each( files, function( key, value ){
+                    data.append( key, value );
+                });
+
+                // Отправляем запрос
+                var form = $("#addDocumentzForm");
+                $.ajax({
+                    url: form.attr("action"),
+                    type: 'POST',
+                    data: data,
+                    cache: false,
+                    //dataType: 'json',
+                    dataType: 'text',
+                    processData: false, // Не обрабатываем файлы (Don't process the files)
+                    contentType: false, // Так jQuery скажет серверу что это строковой запрос
+                    success: function( respond, textStatus, jqXHR ){
+                        $('#filedocz').val("");
+                        alert("Операция завершена! ");
+                        files = undefined;
+                        $('#statfile').html(respond.replace(new RegExp(",",'g'),"<br>").replace("{","").replace("}",""));
+/*
+                        // Если все ОК
+
+                        if( typeof respond.error === 'undefined' ){
+                            // Файлы успешно загружены, делаем что нибудь здесь
+
+                            // выведем пути к загруженным файлам в блок '.ajax-respond'
+
+                            var files_path = respond.files;
+                            var html = '';
+                            $.each( files_path, function( key, val ){ html += val +'<br>'; } )
+                            $('.ajax-respond').html( html );
+                        }
+                        else{
+                            console.log('ОШИБКИ ОТВЕТА сервера: ' + respond.error );
+                        }*/
+                    },
+                    error: function( jqXHR, textStatus, errorThrown ){
+                        console.log('ОШИБКИ AJAX запроса: ' + textStatus );
+                    }
+                });
+
+            });
+
+        });
+    </script>
+</head>
+<body>
+<div>Выберите файл формата .xls</div>
+<br>
+<form method="POST"
+      th:action="@{/lrp//download_z_p/dokumentinsert}"
+      enctype="multipart/form-data"
+      id="addDocumentzForm" class="row">
+
+
+    <input name="filez"
+           multiple="multiple"
+           id="filedocz"
+           type="file"
+           accept=".xls">
+
+    <div><a href="#" id='button'>Добавить</a></div>
+</form>
+<br>
+<div id='statfile'>
+</div>
+<br>
+<br>
+<br>
+<div><a a href="/lrp">Назад</a></div>
+</body>
+</html>

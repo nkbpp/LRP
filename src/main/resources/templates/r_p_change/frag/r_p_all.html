@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<!--<tr th:fragment="r_p_all(rpalls)" th:each="r : ${rpalls.getR_p_rd()}" th:id="${r.getrProd().getId_rod()}">
+
+    <td><input type="text" th:value="${r.getrProd().getFam()}"
+               th:class="${r.getrProd().check_fam()}? 'green fio' : 'red fio'"></td>
+    <td><input type="text" th:value="${r.getrProd().getName()}"
+               th:class="${r.getrProd().check_name()}? 'green fio' : 'red fio'"></td>
+    <td><input type="text" th:value="${r.getrProd().getOtch()}"
+               th:class="${r.getrProd().check_otch()}? 'green fio' : 'red fio'"></td>
+    <td><input type="text" th:value="${r.getrProd().getData_rod()}"
+               th:class="${r.getrProd().check_data_rod()}? 'green dat' : 'red dat'"></td>
+    <td><input type="text" th:value="${r.getrProd().getSnils_rod()}"
+               th:class="${r.getrProd().check_snils_rod()}? 'green snils' : 'red snils'"></td>
+    <td><input type="text" th:value="${r.getrProd().getAdres()}"></td>
+    <td><input type="text" th:value="${r.getrProd().getPasport()}"></td>
+    <td><input type="button"  value="Изменить" th:name="${r.getrProd().getId_rod()}"></td>
+    <td><a th:href="@{/lrp/r_p_change/r_p_rd(id=${r.getrProd().getId_rod()})}">Документы</a></td>
+     &lt;!&ndash;<div style="display: inline" th:replace="r_p_change/frag/r_p_all :: r_p_rd(${r.getR_p_dcs()})"></div>&ndash;&gt;
+</tr>-->
+
+<!--<tr th:fragment="r_p_rd(rpalls)" th:each="r : ${rpalls}" th:id="${r.getrPdoc().getId_doc()}">
+    <td><input type="text" th:value="${r.getrPdoc().getNamedoc()}"
+               th:class="${r.getrPdoc().check_namedoc()}? 'green' : 'red'"></td>
+    <td><input type="text" th:value="${r.getrPdoc().getData_resh()}"
+               th:class="${r.getrPdoc().check_data_resh()}? 'green dat' : 'red dat'"></td>
+    <td><input type="text" th:value="${r.getrPdoc().getData_vst()}"
+               th:class="${r.getrPdoc().check_data_vst()}? 'green dat' : 'red dat'"></td>
+    <td><input type="text" th:value="${r.getrPdoc().getResult()}"
+               th:class="${r.getrPdoc().check_result()}? 'green' : 'red'"></td>
+
+    <td><input type="button"  value="Изменить" th:name="${r.getrPdoc().getId_doc()}"></td>
+    <td><a th:href="@{/lrp/r_p_change/change(id=${r.getrPdoc().getId_doc()})}">Документы</a></td>
+</tr>-->
+
+<!--<div  th:fragment="r_p_rd(r)" th:each="d : ${r}">
+
+    <input type="text" th:value="${d.getrPdoc().getNamedoc()}">
+    <input type="text" th:value="${d.getrPdoc().getData_resh()}">
+    <input type="text" th:value="${d.getrPdoc().getData_vst()}">
+    <input type="text" th:value="${d.getrPdoc().getResult()}">
+
+    <div style="display: inline" th:replace="r_p_change/frag/r_p_all :: r_p_dc(${d})"></div>
+
+</div>-->
+
+<!--<div  th:fragment="r_p_dc(r)" th:each="d : ${r.getrPchildren()}">
+
+    <input type="text" th:value="${d.getName_child()}">
+    <input type="text" th:value="${d.getFam_child()}">
+    <input type="text" th:value="${d.getOtch_child()}">
+    <input type="text" th:value="${d.getData_roj()}">
+    <input type="text" th:value="${d.getSnils_child()}">
+
+    <input type="text" th:value="${d.getDoc_osn()}">
+    <input type="text" th:value="${d.getData_resh_vos()}">
+    <input type="text" th:value="${d.getData_vst_vos()}">
+
+</div>-->
+
+<table name="file" th:id="${idfiles}" th:fragment="r_p_all2(rpalls)">
+    <tr>
+        <td><input type="text" class="fio" value="Фамилия" disabled ></td>
+        <td><input type="text" class="fio" value="Имя" disabled ></td>
+        <td><input type="text" class="fio" value="Отчество" disabled ></td>
+        <td><input type="text" class="dat" value="Дата рож." disabled ></td>
+        <td><input type="text" class="snils" value="СНИЛС" disabled ></td>
+        <td><input type="text" value="Адрес" disabled ></td>
+        <td><input type="text" value="Паспорт" disabled ></td>
+
+        <td><input type="text" value="Судебный орган" disabled ></td>
+        <td><input type="text" class="dat" value="Дата решения" disabled ></td>
+        <td><input type="text" class="dat" value="Дата вступления" disabled ></td>
+        <td><input type="text" value="Результат" disabled ></td>
+
+        <td><input type="text" class="fio" value="Фимилия" disabled ></td>
+        <td><input type="text" class="fio" value="Имя" disabled ></td>
+        <td><input type="text" class="fio" value="Отчество" disabled ></td>
+        <td><input type="text" class="dat" value="Дата рож." disabled ></td>
+        <td><input type="text" class="snils" value="СНИЛС" disabled ></td>
+        <td><input type="text" value="Документ основание" disabled ></td>
+        <td><input type="text" class="dat" value="Дата решения" disabled ></td>
+        <td><input type="text" class="dat" value="Дата вступления" disabled ></td>
+
+        <td><input type="text" value="Изменить" disabled ></td>
+    </tr>
+
+    <tr id="zamtr" th:each="r : ${rpalls}" th:id="${r.getId_child()}">
+        <td><input name="fam_rod" type="text" th:value="${r.getFam_rod()}"
+                   th:class="${r.check_fam()}? 'green fio' : 'red fio'"></td>
+        <td><input name="name_rod" type="text" th:value="${r.getName_rod()}"
+                   th:class="${r.check_name()}? 'green fio' : 'red fio'"></td>
+        <td><input name="otch_rod" type="text" th:value="${r.getOtch_rod()}"
+                   th:class="${r.check_otch()}? 'green fio' : 'red fio'"></td>
+        <td><input name="data_rod" type="text" th:value="${r.getData_rod()}"
+                   th:class="${r.check_data_rod()}? 'green dat' : 'red dat'"></td>
+        <td><input name="snils_rod" type="text" th:value="${r.getSnils_rod()}"
+                   th:class="${r.check_snils_rod()}? 'green snils' : 'red snils'"></td>
+        <td><input name="adres" type="text" th:value="${r.getAdres()}"></td>
+        <td><input name="pasport" type="text" th:value="${r.getPasport()}"></td>
+
+        <td><input name="namedoc" type="text" th:value="${r.getNamedoc()}"
+                   th:class="${r.check_namedoc()}? 'green' : 'red'"></td>
+        <td><input name="data_resh" type="text" th:value="${r.getData_resh()}"
+                   th:class="${r.check_data_resh()}? 'green dat' : 'red dat'"></td>
+        <td><input name="data_vst" type="text" th:value="${r.getData_vst()}"
+                   th:class="${r.check_data_vst()}? 'green dat' : 'red dat'"></td>
+        <td><input name="result" type="text" th:value="${r.getResult()}"
+                   th:class="${r.check_result()}? 'green' : 'red'"></td>
+
+        <td><input name="fam_child" type="text" th:value="${r.getFam_child()}"
+                   th:class="${r.check_fam_child()}? 'green fio' : 'red fio'"></td>
+        <td><input name="name_child" type="text" th:value="${r.getName_child()}"
+                   th:class="${r.check_name_child()}? 'green fio' : 'red fio'"></td>
+        <td><input name="otch_child" type="text" th:value="${r.getOtch_child()}"
+                   th:class="${r.check_otch_child()}? 'green fio' : 'red fio'"></td>
+        <td><input name="data_roj" type="text" th:value="${r.getData_roj()}"
+                   th:class="${r.check_data_roj()}? 'green dat' : 'red dat'"></td>
+        <td><input name="snils_child" type="text" th:value="${r.getSnils_child()}"
+                   th:class="${r.check_snils_child()}? 'green snils' : 'red snils'"></td>
+        <td><input name="doc_osn" type="text" th:value="${r.getDoc_osn()}"
+                   th:class="${r.check_doc_osn()}? 'green' : 'red'"></td>
+        <td><input name="data_resh_vos" type="text" th:value="${r.getData_resh_vos()}"
+                   th:class="${r.check_data_resh_child()}? 'green dat' : 'red dat'"></td>
+        <td><input name="data_vst_vos" type="text" th:value="${r.getData_vst_vos()}"
+                   th:class="${r.check_data_vst_child()}? 'green dat' : 'red dat'"></td>
+
+        <td><input type="button"  value="Изменить" th:name="${r.getId_child()}"></td>
+    </tr>
+    <tr>
+        <td colspan="19" th:text='${message}'></td>
+    </tr>
+</table>
+
+</body>
+</html>
